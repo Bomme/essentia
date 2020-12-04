@@ -18,6 +18,7 @@ jobs:
   # This workflow contains a single job called "build"
   build:
     # The type of runner that the job will run on
+    # https://github.com/actions/virtual-environments/blob/main/images/win/Windows2019-Readme.md
     runs-on: windows-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
@@ -31,3 +32,12 @@ jobs:
 
       - name: Install pkg-config through chocolatey
         run: choco install pkgconfiglite
+
+      - name: Download & build eigen lib
+        run: |
+          Invoke-WebRequest -OutFile eigen.zip https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.zip
+          Expand-Archive -LiteralPath eigen.zip -DestinationPath packaging\win32_3rdparty
+          Set-Location -Path packaging\win32_3rdparty\eigen*
+          New-Item -ItemType "directory" -Path .\build
+          sl build
+          cmake -DCMAKE_INSTALL_PREFIX=$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\ -DEIGEN_BUILD_PKGCONFIG=ON -Wno-dev ..
