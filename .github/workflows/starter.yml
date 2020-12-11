@@ -44,4 +44,6 @@ jobs:
           cmake -DCMAKE_INSTALL_PREFIX=$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\ -DEIGEN_BUILD_PKGCONFIG=ON -Wno-dev ..
 
       - name: Configure build
-        run: chcp
+        run: |
+        chcp 65001;
+        python waf configure
