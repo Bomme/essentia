@@ -33,6 +33,7 @@ jobs:
       - name: Install pkg-config through chocolatey
         run: choco install pkgconfiglite
 
+        # TODO: Should the 3rdparty libs in win64_3rdparty
       - name: Download & build eigen lib
         run: |
           Invoke-WebRequest -OutFile eigen.zip https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.zip
@@ -43,4 +44,6 @@ jobs:
           cmake -DCMAKE_INSTALL_PREFIX=$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\ -DEIGEN_BUILD_PKGCONFIG=ON -Wno-dev ..
 
       - name: Configure build
-        run: python waf configure
+        run: |
+        chcp 65001 #set code page to utf-8
+        python waf configure
