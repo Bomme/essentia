@@ -45,5 +45,5 @@ jobs:
 
       - name: Configure build
         run: |
-        chcp 65001;
-        python waf configure
+          chcp 65001;
+          python waf configure
