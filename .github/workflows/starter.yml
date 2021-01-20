@@ -45,4 +45,5 @@ jobs:
 
       - name: Configure build
         run: |
+          tree /F packaging\win32_3rdparty
           python -X utf8 waf configure -v
