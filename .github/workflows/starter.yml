@@ -42,6 +42,7 @@ jobs:
           New-Item -ItemType "directory" -Path .\build
           sl build
           cmake -DCMAKE_INSTALL_PREFIX=$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\ -DEIGEN_BUILD_PKGCONFIG=ON -Wno-dev ..
+          cmake --install .
 
       - name: Configure build
         run: |
