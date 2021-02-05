@@ -47,7 +47,3 @@ jobs:
       - name: Configure build
         run: |
           python -X utf8 waf configure -v
-    # TODO: copy .pc file where it should go. Do I need to modify the contents?
-
-    # https://docs.python.org/3/using/windows.html#utf-8-mode
-    # https://docs.github.com/en/free-pro-team@latest/actions/reference/workflow-commands-for-github-actions#environment-files
