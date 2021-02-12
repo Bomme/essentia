@@ -45,6 +45,7 @@ jobs:
           cmake --install .
           md "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\lib\pkgconfig\"
           cp "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\share\pkgconfig\eigen3.pc" -Destination "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\lib\pkgconfig\"
+          dir "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty\lib\pkgconfig\"
 
       - name: Configure build
         run: |
