@@ -25,17 +25,17 @@ jobs:
         env:
           THIRD_PARTY: packaging\win32_3rdparty
         run: |
-          $third_party_path = "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty
+          ${third_party_path} = "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty
           Invoke-WebRequest -OutFile eigen.zip https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.zip
           Expand-Archive -LiteralPath eigen.zip -DestinationPath $env:THIRD_PARTY
           Set-Location -Path $env:THIRD_PARTY\eigen*
           New-Item -ItemType "directory" -Path .\build
           sl build
-          cmake -DCMAKE_INSTALL_PREFIX="$third_party_path\" -DEIGEN_BUILD_PKGCONFIG=ON -Wno-dev ..
+          cmake -DCMAKE_INSTALL_PREFIX="${third_party_path}\" -DEIGEN_BUILD_PKGCONFIG=ON -Wno-dev ..
           cmake --install .
-          md "$third_party_path\lib\pkgconfig\"
-          cp "$third_party_path\share\pkgconfig\eigen3.pc" -Destination "$third_party_path\lib\pkgconfig\"
-          dir "$third_party_path\lib\pkgconfig\"
+          md "${third_party_path}\lib\pkgconfig\"
+          cp "${third_party_path}\share\pkgconfig\eigen3.pc" -Destination "${third_party_path}\lib\pkgconfig\"
+          dir "${third_party_path}\lib\pkgconfig\"
 
       - name: Configure build
         run: |
