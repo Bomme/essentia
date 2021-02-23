@@ -25,7 +25,7 @@ jobs:
         env:
           THIRD_PARTY: packaging\win32_3rdparty
         run: |
-          third_party_path = "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty
+          third_party_path = "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty"
           Invoke-WebRequest -OutFile eigen.zip https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.zip
           Expand-Archive -LiteralPath eigen.zip -DestinationPath $env:THIRD_PARTY
           Set-Location -Path $env:THIRD_PARTY\eigen*
