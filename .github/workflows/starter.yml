@@ -17,15 +17,13 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Set env
-        env:
-          THIRD_PARTY: packaging\win32_3rdparty
-
       - name: Install pkg-config through chocolatey
         run: choco install pkgconfiglite
 
       # TODO: Should the 3rdparty libs be in win64_3rdparty instead of win32?
       - name: Download & build eigen lib
+        env:
+          THIRD_PARTY: packaging\win32_3rdparty
         run: |
           $third_party_path = "$env:GITHUB_WORKSPACE\packaging\win32_3rdparty
           Invoke-WebRequest -OutFile eigen.zip https://gitlab.com/libeigen/eigen/-/archive/3.3.8/eigen-3.3.8.zip
