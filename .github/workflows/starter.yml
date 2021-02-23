@@ -19,7 +19,7 @@ jobs:
 
       - name: Set env
           env:
-          THIRD_PARTY: packaging\win32_3rdparty
+            THIRD_PARTY: packaging\win32_3rdparty
 
       - name: Install pkg-config through chocolatey
         run: choco install pkgconfiglite
